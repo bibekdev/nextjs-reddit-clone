@@ -3,7 +3,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { NextThemeProvider } from '@/providers/theme-provider'
-import Navbar from '@/components/common/Navbar'
+import AppBar from '@/components/common/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <NextThemeProvider>
           <UIProvider>
-            <Navbar />
+            <AppBar />
             {children}
           </UIProvider>
         </NextThemeProvider>

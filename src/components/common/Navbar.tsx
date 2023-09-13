@@ -1,41 +1,73 @@
 'use client'
 
+import { useState } from 'react'
 import {
-  Navbar as AppBar,
-  Image,
+  Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Input,
   Button,
+  NavbarMenuToggle,
+  NavbarMenu,
+  Input,
+  Image,
 } from '@nextui-org/react'
 import Link from 'next/link'
 
-const Navbar = () => {
+export default function AppBar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   return (
-    <AppBar className='w-full border-b shadow-sm border-zinc-200 dark:border-zinc-700'>
-      <NavbarBrand>
-        <Image
-          src='https://download.logo.wine/logo/Reddit/Reddit-Logo.wine.png'
-          className='w-[120px]'
+    <Navbar onMenuOpenChange={setIsMenuOpen} isBordered shouldHideOnScroll>
+      <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          className='sm:hidden'
         />
-      </NavbarBrand>
-      <NavbarContent justify='center' className='hidden md:flex'>
-        <NavbarItem className='w-[600px]'>
-          <Input placeholder='Search...' />
+        <NavbarBrand as={Link} href='/'>
+          <Image
+            src='https://toppng.com/uploads/preview/reddit-logo-reddit-icon-115628658968pe8utyxjt.png'
+            alt='reddit'
+            className='w-7 mr-1'
+          />
+          <p className='font-bold text-inherit'>Reddit</p>
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent className='hidden sm:flex gap-4' justify='center'>
+        <NavbarItem className='w-[500px]'>
+          <Input placeholder='Search' />
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify='end'>
         <NavbarItem>
           <Button
             as={Link}
-            href='/login'
-            className='bg-orange-500 font-medium text-white hover:bg-orange-600'>
-            Login
+            href='#'
+            className='bg-orange-500 hover:bg-orange-600 text-white'>
+            Sign Up
           </Button>
         </NavbarItem>
       </NavbarContent>
-    </AppBar>
+      <NavbarMenu>
+        {/* {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              color={
+                index === 2
+                  ? 'primary'
+                  : index === menuItems.length - 1
+                  ? 'danger'
+                  : 'foreground'
+              }
+              className='w-full'
+              href='#'
+              size='lg'>
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))} */}
+      </NavbarMenu>
+    </Navbar>
   )
 }
-export default Navbar
